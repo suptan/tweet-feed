@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import logger from '@common/utils/logger';
 import TweetTable from '@components/TweetTable';
 import { useHashTagElement } from './HashHook';
+import { DefaultLayout } from '@components/Layout';
 
 interface UrlProps {
   q: string;
@@ -30,7 +31,7 @@ const HashTag = (props: UrlProps) => {
   }
 
   return (
-    <main>
+    <DefaultLayout>
       <h1>Hash Tag</h1>
       <Row>
         <Col sm={12} md={8}>
@@ -42,7 +43,7 @@ const HashTag = (props: UrlProps) => {
           <TweetTable data={hashTagResults} />
         </Col>
       </Row>
-    </main>
+    </DefaultLayout>
   )
 }
 

@@ -1,0 +1,7 @@
+@import '../../../common/css/variables';
+
+.DefaultLayout {
+  & > .ant-layout-content {
+    padding: $space-large;
+  }
+}
