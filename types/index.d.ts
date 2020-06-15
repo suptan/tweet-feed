@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import { Dispatch } from "react";
+import { ColumnType } from "antd/lib/table";
 
 export interface HttpGetRequestParams {
   path: string;
@@ -43,15 +44,25 @@ export interface UseHashTagsParams {
   offset?: string | number | undefined;
 }
 
-export interface UseHashTags {
-  hashTags: APIHashTag[];
-  setHashTags: Dispatch<SetStateAction<APIHashTag[]>>;
+export interface UseHashTag {
+  hashTag: APIHashTag | undefined;
+  setHashTag: Dispatch<SetStateAction<APIHashTag>>;
 }
 
 export interface UseHashTagElementParams {
   offset: string;
 }
 
-export interface UseHashTagElement extends UseHashTags {
-  r?: undefined;
+export interface UseHashTagElement extends UseHashTag {
+  hashTagResults: GetFeedByHashTagResults[] | undefined;
+  count: number | undefined;
+}
+
+export interface UseTweetTableElementParams {
+  data: any[] | undefined;
+}
+
+export interface UseTweetTableElement {
+  columns: ColumnType<any>[];
+  dataSource: any[];
 }

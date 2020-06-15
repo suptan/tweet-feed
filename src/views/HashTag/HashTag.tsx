@@ -1,6 +1,9 @@
-import Button from 'antd/lib/button';
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
+import Search from 'antd/lib/input/Search';
 import { useRouter } from 'next/router';
 import logger from '@common/utils/logger';
+import TweetTable from '@components/TweetTable';
 import { useHashTagElement } from './HashHook';
 
 interface UrlProps {
@@ -16,19 +19,29 @@ const HashTag = (props: UrlProps) => {
   const { offset } = props;
   const router = useRouter();
   const {
-    hashTags,
+    hashTagResults,
+    // count,
   } = useHashTagElement({ offset });
-  logger.debug('barbar', hashTags)
-  const handleOnClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
-    e.preventDefault();
-    console.log(router.pathname, router.query); // tslint:disable-line
+  // logger.debug('barbar', hashTags)
+  const handleOnClick = (val: string): void => {
+    // e.preventDefault();
+    console.log(router.pathname, router.query, val); // tslint:disable-line
     router.push(router.pathname + '?q=foo+bar')
   }
 
   return (
     <main>
       <h1>Hash Tag</h1>
-      <Button type="primary" onClick={handleOnClick}>Click me</Button>
+      <Row>
+        <Col sm={12} md={8}>
+          <Search placeholder="Search by Hashtag" onSearch={handleOnClick} />
+        </Col>
+      </Row>
+      <Row>
+        <Col flex="flex" span={24}>
+          <TweetTable data={hashTagResults} />
+        </Col>
+      </Row>
     </main>
   )
 }

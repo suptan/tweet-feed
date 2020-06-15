@@ -1,12 +1,18 @@
+import { get } from 'lodash';
 import hooks from '@hook';
 import { UseHashTagElementParams, UseHashTagElement } from 'types';
 
 const useHashTagElement = ({ offset }: UseHashTagElementParams): UseHashTagElement => {
-  const { hashTags, setHashTags } = hooks.useHashTags({ offset });
+  const { hashTag, setHashTag } = hooks.useHashTags({ offset });
+  const hashTagResults = get(hashTag, 'results');
+  const count = get(hashTag, 'count');
+  // const offset = get(hashTag, 'offset');
 
   return {
-    hashTags,
-    setHashTags,
+    hashTagResults,
+    count,
+    hashTag,
+    setHashTag,
   };
 };
 

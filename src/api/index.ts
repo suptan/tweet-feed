@@ -6,7 +6,7 @@ import logger from "@common/utils/logger";
 const getFeedByHashTag = async ({
   q = 'python',
   offset = 0
-}: GetFeedByHashTagParams): Promise<APIHashTag[]> => {
+}: GetFeedByHashTagParams): Promise<APIHashTag> => {
   const data = await http.getRequest({
     path: `hashtags/${q}`,
     queryString: `offset=${offset}`,

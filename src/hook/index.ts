@@ -1,24 +1,24 @@
-import { UseHashTagsParams, APIHashTag, UseHashTags } from "types";
+import { UseHashTagsParams, APIHashTag, UseHashTag } from "types";
 import { useState, useEffect } from "react";
 import api from '@api';
 import logger from '@common/utils/logger';
 
-const useHashTags = ({ q, offset }: UseHashTagsParams): UseHashTags => {
-  const [hashTags, setHashTags] = useState<APIHashTag[]>([]);
+const useHashTags = ({ q, offset }: UseHashTagsParams): UseHashTag => {
+  const [hashTag, setHashTag] = useState<APIHashTag>();
 
   useEffect(() => {
     api.getFeedByHashTag({
       offset,
     })
-      .then((res: APIHashTag[]) => setHashTags(res))
+      .then((res: APIHashTag) => setHashTag(res))
       .catch((err: Error) => {
         logger.error('GET HashTag', err)}
       );
   }, [q, offset])
 
   return {
-    hashTags,
-    setHashTags,
+    hashTag,
+    setHashTag,
   };
 };
 
