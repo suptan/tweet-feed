@@ -14,7 +14,7 @@ const useTweetTableElement = ({
     title: startCase(key),
     ellipsis: key === 'text',
   }));
-  const dataSource = map(data, (d, i: number) => ({ key: i, ...d,}))
+  const dataSource = map(data, (d, i: number) => ({ key: i, ...d }))
 //   console.log(dataSource, data)
 
   return {
