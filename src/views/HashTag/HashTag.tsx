@@ -1,7 +1,10 @@
 import Button from 'antd/lib/button';
 import { useRouter } from 'next/router';
+import logger from '@common/utils/logger';
+import { useHashTagElement } from './HashHook';
 
 interface UrlProps {
+  q: string;
   offset: string;
 }
 
@@ -9,8 +12,13 @@ interface HashTagInitialProps {
   query: UrlProps
 }
 
-const HashTag = () => {
+const HashTag = (props: UrlProps) => {
+  const { offset } = props;
   const router = useRouter();
+  const {
+    hashTags,
+  } = useHashTagElement({ offset });
+  logger.debug('barbar', hashTags)
   const handleOnClick = (e: React.MouseEvent<HTMLElement, MouseEvent>): void => {
     e.preventDefault();
     console.log(router.pathname, router.query); // tslint:disable-line
@@ -26,9 +34,11 @@ const HashTag = () => {
 }
 
 HashTag.getInitialProps = ({ query }: HashTagInitialProps) => {
-  console.log('offset', query); // tslint:disable-line
+  logger.debug('offset', query);
+  const { q, offset } = query;
   return {
-    query
+    q,
+    offset,
   }
 }
 

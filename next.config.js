@@ -7,7 +7,7 @@ const Dotenv = require('dotenv-webpack')
 
 const getBuildConfig = (...args) => {
   const path = require('path')
-  const withPugins = require('next-compose-plugins')
+  const withPlugins = require('next-compose-plugins')
   const withSCSS = require('@zeit/next-sass')
   const postcssPresetEnv = require('postcss-preset-env')
   const postcssPresetEnvOptions = {
@@ -65,9 +65,10 @@ const getBuildConfig = (...args) => {
     },
     publicRuntimeConfig: {
       WEB_API_DOMAIN: process.env.WEB_API_DOMAIN,
+      PROXY_URL: process.env.PROXY_URL,
     }
   }
-  return withPugins([[withSCSS, cssOptions]], nextConfig)(...args)
+  return withPlugins([[withSCSS, cssOptions]], nextConfig)(...args)
 }
 
 module.exports = (phase, ...rest) => {
