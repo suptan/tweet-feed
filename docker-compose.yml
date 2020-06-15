@@ -1,0 +1,20 @@
+version: '3'
+
+services:
+  twf-web:
+    build: .
+    command: bash -c "npm run dev"
+    image: "ppp/webb"
+    volumes:
+      - "./hooks:/usr/src/app/hooks"
+      - "./server:/usr/src/app/server"
+      - "./types:/usr/src/app/types"
+      - "./src:/usr/src/app/src"
+      - "twf-web-node_modules:/usr/src/app/node_modules"
+      - "./next.config.js:/usr/src/app/next.config.js"
+    ports:
+      - '3006:3000'
+    environment:
+      PORT: 3000
+volumes:
+  twf-web-node_modules:

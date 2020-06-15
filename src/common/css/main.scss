@@ -1,0 +1,15 @@
+@import '~antd/dist/antd.css';
+
+html,
+body,
+body > div:first-child,
+#__next,
+#__next > div,
+#__next > div > div {
+  height: 100%;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
