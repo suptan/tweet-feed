@@ -2,9 +2,9 @@ import React, { useMemo } from 'react';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import logger from '@common/utils/logger';
-import TweetTable from '@components/TweetTable';
 import { useHashTagElement } from './HashHook';
 import { DefaultLayout } from '@components/Layout';
+import TweetTable from '@components/TweetTable';
 import { UrlProps } from 'types';
 
 interface HashTagProps {
