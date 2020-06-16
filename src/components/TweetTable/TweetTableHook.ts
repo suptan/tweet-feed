@@ -29,6 +29,7 @@ const useTweetTableElement = ({
     total: totalPage,
     defaultCurrent: currentPage,
     onChange: onPageChange,
+    position: ['bottomLeft'],
   }
 
   return {

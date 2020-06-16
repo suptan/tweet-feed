@@ -2,13 +2,13 @@
 @import '../../../common/css/variables';
 
 .DefaultLayout {
+  height: 100%;
+
   & > .ant-layout-header {
     background-color: $color-header;
   }
   & > .ant-layout-content {
     padding: $space-large;
-    display: flex;
-    flex-direction: column;
   }
   &__menu {
     padding: 0 $space-large;
@@ -17,5 +17,8 @@
     & > .ant-menu-horizontal > .ant-menu-item-selected {
       background-color: $color-body;
     }
+  }
+  &__footer {
+    text-align: center;
   }
 }

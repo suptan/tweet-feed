@@ -42,7 +42,9 @@ const DefaultLayout = (props: DefaultLayoutProps) => {
         </Menu>
       </div>
       <Content>{children}</Content>
-      <Footer>Tweet ©2020 Created by suptan</Footer>
+      <Footer className="DefaultLayout__footer">
+        <span>Tweet ©2020 Created by suptan</span>
+      </Footer>
     </Layout>
   )
 }
