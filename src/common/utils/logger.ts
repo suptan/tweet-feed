@@ -12,7 +12,15 @@ const warning = (msg: string, obj: any): void => {
 }
 
 const error = (msg: string, obj: any): void => {
-    console.log(msg, JSON.stringify(obj)); // tslint:disable-line
+  console.log(msg, JSON.stringify(obj)); // tslint:disable-line
+}
+
+const handleProfileRender = (
+  id: string, phase: string, actualTime: number,
+  baseTime: number, startTime: number, commitTime: number
+): void => {
+   // tslint:disable-next-line
+  console.log(id, phase, actualTime, baseTime, startTime, commitTime);
 }
 
 export default {
@@ -20,4 +28,5 @@ export default {
   debug,
   warning,
   error,
+  handleProfileRender,
 }

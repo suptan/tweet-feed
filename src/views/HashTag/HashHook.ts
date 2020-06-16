@@ -6,10 +6,12 @@ import { UseHashTagElementParams, UseHashTagElement } from 'types';
 import { NextRouter, useRouter } from 'next/router';
 import { useState } from 'react';
 import { objectToQueryString } from '@common/utils/url-helper';
+import logger from '@common/utils/logger';
 
 const { publicRuntimeConfig: { FETCH_LIMIT } } = getConfig();
 
 const onSearch = (val: string, router: NextRouter): void => {
+  logger.info(`Search feed from tag ${val}`)
   console.log(router.pathname, router, val, 'next'); // tslint:disable-line
   const query = isEmpty(val) ? '' : val;
   const newQuery = {
@@ -31,6 +33,7 @@ const onChangePage = (page: number, router: NextRouter): void => {
 }
 
 const useHashTagElement = ({ q, offset }: UseHashTagElementParams): UseHashTagElement => {
+  logger.info(`Render HashTag with q=${q} offset=${offset}`)
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(false)
   const { hashTag, setHashTag } = hooks.useHashTags({ q, offset, setLoading });

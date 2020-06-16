@@ -1,3 +1,4 @@
+import React, { useMemo } from 'react';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Search from 'antd/lib/input/Search';
@@ -28,37 +29,42 @@ const HashTag = (props: UrlProps) => {
     handleOnPageChange,
   } = useHashTagElement(props);
 
-  return (
-    <DefaultLayout
-      pageTitle="Hash Tag"
-      title="Hash Tag"
-      desc="Tweet feed by hash tag"
-      selectedMenu={['hashtag']}
-    >
-      <Row className="HashTag__Search">
-        <Col span={24}>
-          <label>Hashtag search</label>
-        </Col>
-        <Col sm={12} md={8}>
-          <Search
-            placeholder="Search by Hashtag"
-            onSearch={handleOnSearch}
-            defaultValue={q}
-          />
-        </Col>
-      </Row>
-      <Row className="HashTag__Feed">
-        <Col flex="flex" span={24}>
-          <TweetTable
-            data={hashTagResults}
-            totalPage={totalPage}
-            currentPage={currentPage}
-            loading={loading}
-            onPageChange={handleOnPageChange}
-          />
-        </Col>
-      </Row>
-    </DefaultLayout>
+  return useMemo(() =>
+    (
+      <React.Profiler id="HashTag" onRender={logger.handleProfileRender}>
+        <DefaultLayout
+          pageTitle="Hash Tag"
+          title="Hash Tag"
+          desc="Tweet feed by hash tag"
+          selectedMenu={['hashtag']}
+        >
+          <Row className="HashTag__Search">
+            <Col span={24}>
+              <label>Hashtag search</label>
+            </Col>
+            <Col sm={12} md={8}>
+              <Search
+                placeholder="Search by Hashtag"
+                onSearch={handleOnSearch}
+                defaultValue={q}
+              />
+            </Col>
+          </Row>
+          <Row className="HashTag__Feed">
+            <Col flex="flex" span={24}>
+              <TweetTable
+                data={hashTagResults}
+                totalPage={totalPage}
+                currentPage={currentPage}
+                loading={loading}
+                onPageChange={handleOnPageChange}
+              />
+            </Col>
+          </Row>
+        </DefaultLayout>
+      </React.Profiler>
+    ),
+    [q, hashTagResults, totalPage, currentPage, loading]
   )
 }
 
