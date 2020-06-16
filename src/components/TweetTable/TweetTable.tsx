@@ -3,13 +3,19 @@ import { useTweetTableElement } from './TweetTableHook';
 
 type TweetTableProps = {
   data: any[] | undefined;
+  totalPage: number;
+  currentPage: number;
 }
 
 const TweetTable = (props: TweetTableProps) => {
-  const { data } = props;
-  const { columns, dataSource } = useTweetTableElement({ data });
+  // const { data, count, currentPage } = props;
+  const { columns, dataSource, pagination } = useTweetTableElement(props);
   return (
-    <Table columns={columns} dataSource={dataSource} />
+    <Table
+      columns={columns}
+      dataSource={dataSource}
+      pagination={pagination}
+    />
   )
 }
 

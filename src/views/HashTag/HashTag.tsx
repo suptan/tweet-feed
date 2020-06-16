@@ -7,6 +7,8 @@ import TweetTable from '@components/TweetTable';
 import { useHashTagElement } from './HashHook';
 import { DefaultLayout } from '@components/Layout';
 
+import './HashTag.scss';
+
 interface UrlProps {
   q: string;
   offset: string;
@@ -21,7 +23,8 @@ const HashTag = (props: UrlProps) => {
   const router = useRouter();
   const {
     hashTagResults,
-    // count,
+    totalPage,
+    currentPage,
   } = useHashTagElement({ offset });
   // logger.debug('barbar', hashTags)
   const handleOnClick = (val: string): void => {
@@ -33,14 +36,17 @@ const HashTag = (props: UrlProps) => {
   return (
     <DefaultLayout title="Hash Tag" desc="Tweet feed by hash tag">
       <h1>Hash Tag</h1>
-      <Row>
+      <Row className="HashTag__Search">
+        <Col span={24}>
+          <label>Hashtag search</label>
+        </Col>
         <Col sm={12} md={8}>
           <Search placeholder="Search by Hashtag" onSearch={handleOnClick} />
         </Col>
       </Row>
-      <Row>
+      <Row className="HashTag__Feed">
         <Col flex="flex" span={24}>
-          <TweetTable data={hashTagResults} />
+          <TweetTable data={hashTagResults} totalPage={totalPage} currentPage={currentPage} />
         </Col>
       </Row>
     </DefaultLayout>

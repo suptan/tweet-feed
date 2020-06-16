@@ -66,6 +66,7 @@ const getBuildConfig = (...args) => {
     publicRuntimeConfig: {
       WEB_API_DOMAIN: process.env.WEB_API_DOMAIN,
       PROXY_URL: process.env.PROXY_URL,
+      FETCH_LIMIT: process.env.FETCH_LIMIT,
     }
   }
   return withPlugins([[withSCSS, cssOptions]], nextConfig)(...args)

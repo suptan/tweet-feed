@@ -1,6 +1,7 @@
 import "@testing-library/jest-dom/extend-expect";
 import { Dispatch } from "react";
-import { ColumnType } from "antd/lib/table";
+import { TablePaginationConfig } from "antd/lib/table";
+import { PaginationConfig } from "antd/lib/pagination";
 
 export interface HttpGetRequestParams {
   path: string;
@@ -55,14 +56,19 @@ export interface UseHashTagElementParams {
 
 export interface UseHashTagElement extends UseHashTag {
   hashTagResults: GetFeedByHashTagResults[] | undefined;
-  count: number | undefined;
+  totalPage: number;
+  currentPage: number;
 }
 
+// TODO, compare usage with TweetTableProps
 export interface UseTweetTableElementParams {
   data: any[] | undefined;
+  totalPage: number;
+  currentPage: number;
 }
 
 export interface UseTweetTableElement {
   columns: ColumnType<any>[];
   dataSource: any[];
+  pagination: TablePaginationConfig;
 }

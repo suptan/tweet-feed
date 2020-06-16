@@ -3,5 +3,7 @@
 .DefaultLayout {
   & > .ant-layout-content {
     padding: $space-large;
+    display: flex;
+    flex-direction: column;
   }
 }

@@ -1,0 +1,11 @@
+@import '../../common/css/variables';
+
+.HashTag {
+  &__Search {
+    margin: $space-medium 0;
+  }
+
+  &__Feed {
+    margin: $space-medium 0;
+  }
+}

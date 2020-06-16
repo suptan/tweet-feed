@@ -1,21 +1,28 @@
+import getConfig from 'next/config';
 import { get, map } from 'lodash';
 import dayjs from 'dayjs';
 import hooks from '@hook';
 import { UseHashTagElementParams, UseHashTagElement } from 'types';
 
+const { publicRuntimeConfig: { FETCH_LIMIT } } = getConfig();
+
 const useHashTagElement = ({ offset }: UseHashTagElementParams): UseHashTagElement => {
   const { hashTag, setHashTag } = hooks.useHashTags({ offset });
-  const count = get(hashTag, 'count');
+  const count = get(hashTag, 'count', 0);
   const hashTagResults = map(get(hashTag, 'results'), (r) => ({
     ...r,
     hashtags: r.hashtags.slice(0, 2),
     date: dayjs(r.date).format('MMM D, YYYY'),
   }));
-  // const offset = get(hashTag, 'offset');
+  // const dataOffset = get(hashTag, 'offset', 0);
+  // tslint:disable-next-line: no-bitwise
+  const currentPage = (Number(offset) / FETCH_LIMIT) | 0 + 1;
+  const totalPage = (count >= FETCH_LIMIT ? currentPage + 1 : currentPage) * FETCH_LIMIT;
 
   return {
     hashTagResults,
-    count,
+    totalPage,
+    currentPage,
     hashTag,
     setHashTag,
   };
