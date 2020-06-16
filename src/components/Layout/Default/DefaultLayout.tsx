@@ -29,7 +29,7 @@ const DefaultLayout = (props: DefaultLayoutProps) => {
         <meta name="description" content={desc} />
       </Head>
       <Header>
-        <h1>{pageTitle}</h1>
+        <h1 data-testid="page-title">{pageTitle}</h1>
       </Header>
       <div className="DefaultLayout__menu">
         <Menu
