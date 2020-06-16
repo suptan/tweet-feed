@@ -18,7 +18,8 @@
               "@store": "./src/store",
               "@views": "./src/views",
               "@utils": "./src/utils",
-              "@api": "./src/api/index.ts"
+              "@api": "./src/api/index.ts",
+              "@hook": "./src/hook/index.ts"
             }
           }
         ]
@@ -42,7 +43,8 @@
               "@store": "./src/store",
               "@views": "./src/views",
               "@utils": "./src/utils",
-              "@api": "./src/api/index.ts"
+              "@api": "./src/api/index.ts",
+              "@hook": "./src/hook/index.ts"
             }
           }
         ]
@@ -73,7 +75,8 @@
               "@store": "./src/store",
               "@views": "./src/views",
               "@utils": "./src/utils",
-              "@api": "./src/api/index.ts"
+              "@api": "./src/api/index.ts",
+              "@hook": "./src/hook/index.ts"
             }
           }
         ]

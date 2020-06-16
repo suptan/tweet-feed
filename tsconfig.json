@@ -39,6 +39,12 @@
       ],
       "@views/*": [
         "./src/views/*"
+      ],
+      "@api": [
+        "./src/api/index.ts"
+      ],
+      "@hook": [
+        "./src/hook/index.ts"
       ]
     },
     "forceConsistentCasingInFileNames": true,

@@ -10,7 +10,7 @@ const handle = app.getRequestHandler()
 
 const ssrCache = new LRUCache({
   max: 100 * 1024 * 1024 /* cache size will be 100 MB */,
-  maxAge: 1000 * 60 * 60 /* cache time out is 1 hr */,
+  maxAge: 1000 /* cache time out is 1 hr */,
 })
 
 app.prepare().then(() => {

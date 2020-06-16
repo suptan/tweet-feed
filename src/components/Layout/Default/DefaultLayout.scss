@@ -1,0 +1,24 @@
+@import '../../../common/css/colors';
+@import '../../../common/css/variables';
+
+.DefaultLayout {
+  height: 100%;
+
+  & > .ant-layout-header {
+    background-color: $color-header;
+  }
+  & > .ant-layout-content {
+    padding: $space-large;
+  }
+  &__menu {
+    padding: 0 $space-large;
+    background-color: $color-header;
+
+    & > .ant-menu-horizontal > .ant-menu-item-selected {
+      background-color: $color-body;
+    }
+  }
+  &__footer {
+    text-align: center;
+  }
+}
