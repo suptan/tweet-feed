@@ -4,17 +4,19 @@ import dayjs from 'dayjs';
 import hooks from '@hook';
 import { UseHashTagElementParams, UseHashTagElement } from 'types';
 import { NextRouter, useRouter } from 'next/router';
+import { useState } from 'react';
 
 const { publicRuntimeConfig: { FETCH_LIMIT } } = getConfig();
 
 const onSearch = (val: string, router: NextRouter): void => {
   console.log(router.pathname, router.query, val, 'next'); // tslint:disable-line
-  router.push(router.pathname + '?q=foo+bar')
+  router.push(router.pathname + `?q=${encodeURI(val)}`)
 }
 
-const useHashTagElement = ({ offset }: UseHashTagElementParams): UseHashTagElement => {
+const useHashTagElement = ({ q, offset }: UseHashTagElementParams): UseHashTagElement => {
   const router = useRouter();
-  const { hashTag, setHashTag } = hooks.useHashTags({ offset });
+  const [loading, setLoading] = useState<boolean>(false)
+  const { hashTag, setHashTag } = hooks.useHashTags({ q, offset, setLoading });
   const count = get(hashTag, 'count', 0);
   const hashTagResults = map(get(hashTag, 'results'), (r) => ({
     ...r,
@@ -31,6 +33,7 @@ const useHashTagElement = ({ offset }: UseHashTagElementParams): UseHashTagEleme
     totalPage,
     currentPage,
     hashTag,
+    loading,
     setHashTag,
     handleOnSearch: (val: string) => onSearch(val, router),
   };

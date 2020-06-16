@@ -6,20 +6,23 @@ import './DefaultLayout.scss';
 
 type DefaultLayoutProps = {
   children: ReactNode
+  pageTitle: string;
   title: string;
   desc: string;
 }
 
 const { Header, Footer, Content } = Layout;
 const DefaultLayout = (props: DefaultLayoutProps) => {
-  const { children, title, desc } = props;
+  const { children, pageTitle, title, desc } = props;
   return (
     <Layout className="DefaultLayout">
       <Head>
         <title>{title}</title>
         <meta name="description" content={desc} />
       </Head>
-      <Header>Header</Header>
+      <Header>
+        <h1>{pageTitle}</h1>
+      </Header>
       <Content>{children}</Content>
       <Footer>Tweet ©2020 Created by suptan</Footer>
     </Layout>

@@ -9,8 +9,8 @@ import { DefaultLayout } from '@components/Layout';
 import './HashTag.scss';
 
 interface UrlProps {
-  q: string;
-  offset: string;
+  q?: string;
+  offset?: string;
 }
 
 interface HashTagInitialProps {
@@ -18,23 +18,16 @@ interface HashTagInitialProps {
 }
 
 const HashTag = (props: UrlProps) => {
-  const { offset } = props;
   const {
     hashTagResults,
     totalPage,
     currentPage,
+    loading,
     handleOnSearch
-  } = useHashTagElement({ offset });
-  // logger.debug('barbar', hashTags)
-  // const handleOnSearch = (val: string): void => {
-  //   // e.preventDefault();
-  //   console.log(router.pathname, router.query, val); // tslint:disable-line
-  //   router.push(router.pathname + '?q=foo+bar')
-  // }
+  } = useHashTagElement(props);
 
   return (
-    <DefaultLayout title="Hash Tag" desc="Tweet feed by hash tag">
-      <h1>Hash Tag</h1>
+    <DefaultLayout pageTitle="Hash Tag" title="Hash Tag" desc="Tweet feed by hash tag">
       <Row className="HashTag__Search">
         <Col span={24}>
           <label>Hashtag search</label>
@@ -45,7 +38,12 @@ const HashTag = (props: UrlProps) => {
       </Row>
       <Row className="HashTag__Feed">
         <Col flex="flex" span={24}>
-          <TweetTable data={hashTagResults} totalPage={totalPage} currentPage={currentPage} />
+          <TweetTable
+            data={hashTagResults}
+            totalPage={totalPage}
+            currentPage={currentPage}
+            loading={loading}
+          />
         </Col>
       </Row>
     </DefaultLayout>

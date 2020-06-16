@@ -5,16 +5,18 @@ type TweetTableProps = {
   data: any[] | undefined;
   totalPage: number;
   currentPage: number;
+  loading: boolean;
 }
 
 const TweetTable = (props: TweetTableProps) => {
-  // const { data, count, currentPage } = props;
+  const { loading } = props;
   const { columns, dataSource, pagination } = useTweetTableElement(props);
   return (
     <Table
       columns={columns}
       dataSource={dataSource}
       pagination={pagination}
+      loading={loading}
     />
   )
 }

@@ -40,9 +40,11 @@ export interface APIHashTag {
   results: GetFeedByHashTagResults[];
 }
 
+// TODO, compare usage with TweetTableProps
 export interface UseHashTagsParams {
   q?: string | undefined;
   offset?: string | number | undefined;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface UseHashTag {
@@ -51,13 +53,15 @@ export interface UseHashTag {
 }
 
 export interface UseHashTagElementParams {
-  offset: string;
+  q?: string | undefined;
+  offset?: string | undefined;
 }
 
 export interface UseHashTagElement extends UseHashTag {
   hashTagResults: GetFeedByHashTagResults[] | undefined;
   totalPage: number;
   currentPage: number;
+  loading: boolean;
   handleOnSearch: (val: string) => void
 }
 
