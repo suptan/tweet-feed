@@ -11,7 +11,7 @@ const { publicRuntimeConfig: { FETCH_LIMIT } } = getConfig();
 
 const onSearch = (val: string, router: NextRouter): void => {
   console.log(router.pathname, router, val, 'next'); // tslint:disable-line
-  const query = isEmpty(val) ? '' : `${encodeURIComponent(val)}`;
+  const query = isEmpty(val) ? '' : val;
   const newQuery = {
     ...router.query,
     q: query,

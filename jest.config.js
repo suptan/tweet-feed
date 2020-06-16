@@ -17,8 +17,10 @@ module.exports = {
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
   collectCoverage: false,
   moduleNameMapper: {
-    "^@src(.*)$": "<rootDir>/src$1",
-    "^@pages(.*)$": "<rootDir>/pages$1",
+    "^@components/(.*)$": "<rootDir>/src/components/$1",
+    "^@common/(.*)": "<rootDir>/src/common/$1",
+    "^@api/(.*)$": "<rootDir>/src/api/index.ts",
+    "^@pages/(.*)$": "<rootDir>/pages$1",
     '.+\\.(css|styl|less|sass|scss)$': 'identity-obj-proxy',
   },
 }
