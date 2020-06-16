@@ -63,12 +63,6 @@ export interface UseHashTagElementParams {
   offset?: string | undefined;
 }
 
-export interface UseHashTagResult extends GetFeedByHashTagResults {
-  likes: string | number;
-  replies: string | number;
-  retweets: string | number;
-}
-
 export interface UseHashTagElement extends UseTweetFeed {
   q?: string | undefined;
   handleOnSearch: (val: string) => void;
@@ -90,31 +84,8 @@ export interface UseTweetTableElement {
   };
 }
 
-export interface UseHashTagResult extends GetFeedByUserResults {
-  likes: string | number;
-  replies: string | number;
-  retweets: string | number;
-}
-
-export interface UseUserResult extends GetFeedByHashTagResults {
-  likes: string | number;
-  replies: string | number;
-  retweets: string | number;
-}
-
 export interface UseUserElement extends UseTweetFeed {
   q?: string | undefined;
   handleOnSearch: (val: string) => void;
   handleOnPageChange: (page: number, pageSize?: number | undefined) => void;
-}
-
-export interface UseUserTweetParams {
-  q?: string | undefined;
-  offset?: string | number | undefined;
-  setLoading: Dispatch<SetStateAction<boolean>>;
-}
-
-export interface UseUser {
-  tweetUser: APIUserTweet | undefined;
-  setTweetUser: Dispatch<SetStateAction<APIUserTweet>>;
 }
