@@ -19,11 +19,13 @@ interface HashTagInitialProps {
 
 const HashTag = (props: UrlProps) => {
   const {
+    q,
     hashTagResults,
     totalPage,
     currentPage,
     loading,
-    handleOnSearch
+    handleOnSearch,
+    handleOnPageChange,
   } = useHashTagElement(props);
 
   return (
@@ -33,7 +35,11 @@ const HashTag = (props: UrlProps) => {
           <label>Hashtag search</label>
         </Col>
         <Col sm={12} md={8}>
-          <Search placeholder="Search by Hashtag" onSearch={handleOnSearch} />
+          <Search
+            placeholder="Search by Hashtag"
+            onSearch={handleOnSearch}
+            value={q}
+          />
         </Col>
       </Row>
       <Row className="HashTag__Feed">
@@ -43,6 +49,7 @@ const HashTag = (props: UrlProps) => {
             totalPage={totalPage}
             currentPage={currentPage}
             loading={loading}
+            onPageChange={handleOnPageChange}
           />
         </Col>
       </Row>

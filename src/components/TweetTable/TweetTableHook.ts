@@ -6,6 +6,7 @@ const useTweetTableElement = ({
   data,
   totalPage,
   currentPage,
+  onPageChange,
 }: UseTweetTableElementParams): UseTweetTableElement => {
   const keys: string[] = [
     'likes', 'replies', 'retweets', 'hashtags', 'date'
@@ -27,6 +28,7 @@ const useTweetTableElement = ({
   const pagination: TablePaginationConfig = {
     total: totalPage,
     defaultCurrent: currentPage,
+    onChange: onPageChange,
   }
 
   return {

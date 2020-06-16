@@ -6,6 +6,7 @@ type TweetTableProps = {
   totalPage: number;
   currentPage: number;
   loading: boolean;
+  onPageChange: (page: number, pageSize?: number | undefined) => void
 }
 
 const TweetTable = (props: TweetTableProps) => {

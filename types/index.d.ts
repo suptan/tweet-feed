@@ -58,11 +58,13 @@ export interface UseHashTagElementParams {
 }
 
 export interface UseHashTagElement extends UseHashTag {
+  q?: string | undefined;
   hashTagResults: GetFeedByHashTagResults[] | undefined;
   totalPage: number;
   currentPage: number;
   loading: boolean;
-  handleOnSearch: (val: string) => void
+  handleOnSearch: (val: string) => void;
+  handleOnPageChange: (page: number, pageSize?: number | undefined) => void;
 }
 
 // TODO, compare usage with TweetTableProps
@@ -70,6 +72,7 @@ export interface UseTweetTableElementParams {
   data: any[] | undefined;
   totalPage: number;
   currentPage: number;
+  onPageChange: (page: number, pageSize?: number | undefined) => void;
 }
 
 export interface UseTweetTableElement {
