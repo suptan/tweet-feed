@@ -6,7 +6,7 @@ const mockRouterPush = jest.fn();
 
 jest.mock('@api', () => ({
   getFeedByHashTag: jest.fn(() => Promise.resolve({
-    count: 3,
+    count: 10,
     offset: 0,
     results: [
       {
@@ -27,8 +27,9 @@ jest.mock('@api', () => ({
 }))
 jest.mock('next/config', () => () => ({
   publicRuntimeConfig: {
-    FETCH_LIMIT: 2
-  }
+    NODE_ENV: 'test',
+    FETCH_LIMIT: 2,
+  },
 }));
 jest.mock('next/router', () => ({
   useRouter() {
@@ -59,13 +60,21 @@ describe('<HashTag />', () => {
     expect(record.textContent).toBe('for test');
   });
 
-  it('should call to API when search input changed', async () => {
+  it('should change url when search input changed', () => {
     const input = screen.getByPlaceholderText('Search by Hashtag');
     fireEvent.change(input, { target: { value: 'css' } });
     // tslint:disable-next-line
     expect(input.value).toBe('css');
-    fireEvent.click(screen.getByLabelText('search'));
+    fireEvent.click(input);
     expect(mockRouterPush).toBeCalledWith('mock-path?q=css');
+  })
+
+  // TODO, screen not re-render
+  it.skip('should change url when page changed', () => {
+    // if not found, please check max page calculation logic
+    // related with count & FETCH_LIMIT
+    // fireEvent.click(screen.getByTitle('2'));
+    // expect(mockRouterPush).toBeCalledWith('mock-path?q=css');
   })
   
 })

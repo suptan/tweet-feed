@@ -56,6 +56,9 @@ const useHashTagElement = ({ q, offset }: UseHashTagElementParams): UseHashTagEl
   const currentPage = ((Number(offset) / FETCH_LIMIT) | 0) + 1;
   const totalPage = (count >= FETCH_LIMIT ? currentPage + 1 : currentPage) * FETCH_LIMIT;
 
+  logger.debug('currentPage', currentPage);
+  logger.debug('totalPage', totalPage);
+
   return {
     q,
     hashTagResults,

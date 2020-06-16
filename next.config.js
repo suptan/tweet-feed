@@ -64,6 +64,7 @@ const getBuildConfig = (...args) => {
       return config
     },
     publicRuntimeConfig: {
+      NODE_ENV: process.env.NODE_ENV,
       WEB_API_DOMAIN: process.env.WEB_API_DOMAIN,
       PROXY_URL: process.env.PROXY_URL,
       FETCH_LIMIT: process.env.FETCH_LIMIT,
