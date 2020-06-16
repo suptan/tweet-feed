@@ -2,8 +2,11 @@ import getConfig from 'next/config';
 
 const { publicRuntimeConfig: { NODE_ENV } } = getConfig();
 
-// TODO, sent log data to cloud service or API
-const info = (msg: string): void => {
+/**
+ * TODO, sent log data to cloud service or API
+ */
+
+ const info = (msg: string): void => {
   console.log(msg); // tslint:disable-line
 }
 

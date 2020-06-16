@@ -11,8 +11,8 @@ jest.mock('next/config', () => () => ({
   }
 }));
 
-describe('API Hashtag', () => {
-  beforeAll(() => {
+describe('API User', () => {
+  beforeEach(() => {
     jest.clearAllMocks();
   })
 
@@ -60,11 +60,11 @@ describe('API Hashtag', () => {
       offset: 30,
     };
     http.getRequest.mockResolvedValueOnce(mockData);
-    const result = await api.getFeedByHashTag(mockParams);
+    const result = await api.getFeedByUser(mockParams);
     expect(result).toEqual(mockData);
     expect(http.getRequest).toBeCalledWith(
       expect.objectContaining({
-        path: 'hashtags/earth',
+        path: 'users/earth',
         queryString: 'offset=30&limit=2',
       })
     );
@@ -74,12 +74,12 @@ describe('API Hashtag', () => {
     const mockData = new Error('request failed');
     http.getRequest.mockRejectedValueOnce(mockData);
     try {
-      await api.getFeedByHashTag({});
+      await api.getFeedByUser({});
     } catch(err) {
       expect(err).toEqual(mockData);
       expect(http.getRequest).toBeCalledWith(
         expect.objectContaining({
-          path: 'hashtags/python',
+          path: 'users/raymondh',
           queryString: 'offset=0&limit=2',
         })
       );
