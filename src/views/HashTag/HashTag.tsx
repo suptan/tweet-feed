@@ -43,7 +43,7 @@ const HashTag = (props: UrlProps) => {
           <Search
             placeholder="Search by Hashtag"
             onSearch={handleOnSearch}
-            value={q}
+            defaultValue={q}
           />
         </Col>
       </Row>
