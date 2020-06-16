@@ -1,24 +1,9 @@
 import { UseUserElement } from "types";
-import { NextRouter, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import logger from "@common/utils/logger";
 import hooks from '@hook';
 import { UserProps } from "./User";
-
-
-const onSearch = (val: string, router: NextRouter) => {
-  logger.info(`Search feed from user ${val}`)
-  router.push(router.pathname + '?');
-}
-
-const onChangePage = (page: number, router: NextRouter): void => {
-//   const offset = (page - 1) * FETCH_LIMIT;
-//   const newQuery = {
-//     ...router.query,
-//     offset,
-//   };
-//   const queryUrl = objectToQueryString(newQuery);
-  router.push(router.pathname + '?' + page)
-}
+import tweetHelper from "@common/utils/tweet-helper";
 
 const useUserElement = ({ q, offset }: UserProps): UseUserElement => {
   logger.info(`Render User with q=${q} offset=${offset}`)
@@ -31,8 +16,14 @@ const useUserElement = ({ q, offset }: UserProps): UseUserElement => {
     tweet,
     setTweet,
     setLoading,
-    handleOnSearch: (val: string) => onSearch(val, router),
-    handleOnPageChange: (page: number) => onChangePage(page, router),
+    handleOnSearch: (val: string): void => {
+      logger.info(`Search feed by user ${val}`);
+      tweetHelper.onSearch(val, router);
+    },
+    handleOnPageChange: (page: number) => {
+      logger.info(`Search feed by user on page ${page}`);
+      tweetHelper.onChangePage(page, router);
+    },
   };
 };
 
