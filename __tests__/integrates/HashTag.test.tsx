@@ -33,6 +33,7 @@ jest.mock('next/config', () => () => ({
 jest.mock('next/router', () => ({
   useRouter() {
     return {
+      pathname: 'mock-path',
       push: mockRouterPush,
     };
   },
@@ -63,9 +64,8 @@ describe('<HashTag />', () => {
     fireEvent.change(input, { target: { value: 'css' } });
     // tslint:disable-next-line
     expect(input.value).toBe('css');
-    // TODO, fireEvent not working with antd
-    // fireEvent.keyDown(screen.getByDisplayValue('css'), { key: 'Enter', code: 13  });
-    // expect(mockRouterPush).toBeCalledWith('');
+    fireEvent.click(screen.getByLabelText('search'));
+    expect(mockRouterPush).toBeCalledWith('mock-path?q=css');
   })
   
 })
