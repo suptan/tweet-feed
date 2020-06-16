@@ -65,7 +65,7 @@ describe('<HashTag />', () => {
     fireEvent.change(input, { target: { value: 'css' } });
     // tslint:disable-next-line
     expect(input.value).toBe('css');
-    fireEvent.click(input);
+    fireEvent.click(screen.getByLabelText('search'));
     expect(mockRouterPush).toBeCalledWith('mock-path?q=css');
   })
 
