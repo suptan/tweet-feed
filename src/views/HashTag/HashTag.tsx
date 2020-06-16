@@ -35,7 +35,7 @@ const HashTag = (props: HashTagProps) => {
           pageTitle="Hash Tag"
           title="Hash Tag"
           desc="Tweeter feed by hash tag"
-          selectedMenu={['hashtag']}
+          selectedMenu={['hash-tag']}
         >
           <Row className="HashTag__Search">
             <Col span={24}>
