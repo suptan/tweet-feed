@@ -15,14 +15,14 @@ const getRequest = async ({
   const url = path + '?' + queryString;
   instance.get(url)
     .then((response) => resolve(response.data))
-    .catch(error => logger.error(`GET ${path} ${error.message}`, error))
-    .then(() => {
+    .catch(error =>{
+      logger.error(`GET ${path} ${error.message}`, error)
       // Use proxy as fallback
       instance.get(url, {
         baseURL: PROXY_URL + WEB_API_DOMAIN
       })
         .then((response) => resolve(response.data))
-        .catch(error => reject(new Error(`GET ${path} ${error.message}`)))
+        .catch(proxyError => reject(new Error(`GET ${path} ${proxyError.message}`)))
     });
 });
 
