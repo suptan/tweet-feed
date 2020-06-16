@@ -2,6 +2,11 @@ import "@testing-library/jest-dom/extend-expect";
 import { Dispatch } from "react";
 import { TablePaginationConfig } from "antd/lib/table";
 
+export interface UrlProps {
+  q?: string;
+  offset?: string;
+}
+
 export interface HttpGetRequestParams {
   path: string;
   id?: string | number;
@@ -18,12 +23,12 @@ export interface UserAccount {
   id: number;
 }
 
-export interface GetFeedByHashTagParams {
+export interface GetTweetParams {
   q?: string;
   offset?: string | number;
 }
 
-export interface GetFeedByHashTagResults {
+export interface APITweetResults {
   account: UserAccount;
   date: string;
   hashtags: string[];
@@ -33,22 +38,24 @@ export interface GetFeedByHashTagResults {
   text: string;
 }
 
-export interface APIHashTag {
+export interface APITweet {
   count: number;
   offset: number;
-  results: GetFeedByHashTagResults[];
+  results: APITweetResults[];
 }
 
 // TODO, compare usage with TweetTableProps
-export interface UseHashTagsParams {
+export interface UseTweetFeedParams {
   q?: string | undefined;
   offset?: string | number | undefined;
-  setLoading: Dispatch<SetStateAction<boolean>>;
+  by: string;
 }
 
-export interface UseHashTag {
-  hashTag: APIHashTag | undefined;
-  setHashTag: Dispatch<SetStateAction<APIHashTag>>;
+export interface UseTweetFeed {
+  tweet: APITweet | undefined;
+  loading: boolean;
+  setTweet: Dispatch<SetStateAction<APITweet>>;
+  setLoading: Dispatch<SetStateAction<boolean>>;
 }
 
 export interface UseHashTagElementParams {
@@ -62,21 +69,15 @@ export interface UseHashTagResult extends GetFeedByHashTagResults {
   retweets: string | number;
 }
 
-export interface UseHashTagElement extends UseHashTag {
+export interface UseHashTagElement extends UseTweetFeed {
   q?: string | undefined;
-  hashTagResults: UseHashTagResult[] | undefined;
-  totalPage: number;
-  currentPage: number;
-  loading: boolean;
   handleOnSearch: (val: string) => void;
   handleOnPageChange: (page: number, pageSize?: number | undefined) => void;
 }
 
 // TODO, compare usage with TweetTableProps
 export interface UseTweetTableElementParams {
-  data: any[] | undefined;
-  totalPage: number;
-  currentPage: number;
+  data: APITweet | undefined;
   onPageChange: (page: number, pageSize?: number | undefined) => void;
 }
 
@@ -87,4 +88,33 @@ export interface UseTweetTableElement {
   scroll: RcTableProps<RecordType>['scroll'] & {
     scrollToFirstRowOnChange?: boolean;
   };
+}
+
+export interface UseHashTagResult extends GetFeedByUserResults {
+  likes: string | number;
+  replies: string | number;
+  retweets: string | number;
+}
+
+export interface UseUserResult extends GetFeedByHashTagResults {
+  likes: string | number;
+  replies: string | number;
+  retweets: string | number;
+}
+
+export interface UseUserElement extends UseTweetFeed {
+  q?: string | undefined;
+  handleOnSearch: (val: string) => void;
+  handleOnPageChange: (page: number, pageSize?: number | undefined) => void;
+}
+
+export interface UseUserTweetParams {
+  q?: string | undefined;
+  offset?: string | number | undefined;
+  setLoading: Dispatch<SetStateAction<boolean>>;
+}
+
+export interface UseUser {
+  tweetUser: APIUserTweet | undefined;
+  setTweetUser: Dispatch<SetStateAction<APIUserTweet>>;
 }

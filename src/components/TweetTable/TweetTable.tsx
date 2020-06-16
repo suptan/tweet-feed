@@ -1,10 +1,9 @@
 import Table from 'antd/lib/table';
 import { useTweetTableElement } from './TweetTableHook';
+import { APITweet } from 'types';
 
 type TweetTableProps = {
-  data: any[] | undefined;
-  totalPage: number;
-  currentPage: number;
+  data: APITweet | undefined;
   loading: boolean;
   onPageChange: (page: number, pageSize?: number | undefined) => void
 }

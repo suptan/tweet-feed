@@ -37,7 +37,7 @@ const DefaultLayout = (props: DefaultLayoutProps) => {
           selectedKeys={selectedMenu}
           mode="horizontal"
         >
-          <Item key="hashtag">Hashtag Search</Item>
+          <Item key="hash-tag">Hashtag Search</Item>
           <Item key="user">User Search</Item>
         </Menu>
       </div>

@@ -1,8 +1,7 @@
 import getConfig from 'next/config';
 import { isEmpty } from 'lodash'
-import { GetFeedByHashTagParams, APIHashTag } from "types";
+import { GetTweetParams, APITweet } from "types";
 import http from '@common/utils/http-helper';
-import logger from "@common/utils/logger";
 
 const { publicRuntimeConfig: { FETCH_LIMIT } } = getConfig();
 
@@ -10,18 +9,30 @@ const { publicRuntimeConfig: { FETCH_LIMIT } } = getConfig();
 const getFeedByHashTag = async ({
   q = 'python',
   offset = 0
-}: GetFeedByHashTagParams): Promise<APIHashTag> => {
+}: GetTweetParams): Promise<APITweet> => {
   const newTag = isEmpty(q) ? 'python' : q;
   const data = await http.getRequest({
     path: `hashtags/${newTag}`,
     queryString: `offset=${offset}&limit=${FETCH_LIMIT}`,
   });
 
-  logger.debug('rr', data)
-
   return data;
 };
 
+const getFeedByUser = async ({
+  q,
+  offset = 0,
+}: GetTweetParams): Promise<APITweet> => {
+  const newUser = isEmpty(q) ? 'raymondh' : q;
+  const data = await http.getRequest({
+    path: `users/${newUser}`,
+    queryString: `offset=${offset}&limit=${FETCH_LIMIT}`,
+  });
+
+  return data;
+}
+
 export default {
   getFeedByHashTag,
+  getFeedByUser,
 }

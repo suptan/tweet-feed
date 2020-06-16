@@ -6,10 +6,11 @@ import logger from '@common/utils/logger';
 import TweetTable from '@components/TweetTable';
 import { useHashTagElement } from './HashHook';
 import { DefaultLayout } from '@components/Layout';
+import { UrlProps } from 'types';
 
 import './HashTag.scss';
 
-interface UrlProps {
+interface HashTagProps {
   q?: string;
   offset?: string;
 }
@@ -18,12 +19,10 @@ interface HashTagInitialProps {
   query: UrlProps
 }
 
-const HashTag = (props: UrlProps) => {
+const HashTag = (props: HashTagProps) => {
   const {
     q,
-    hashTagResults,
-    totalPage,
-    currentPage,
+    tweet,
     loading,
     handleOnSearch,
     handleOnPageChange,
@@ -53,9 +52,7 @@ const HashTag = (props: UrlProps) => {
           <Row className="HashTag__Feed">
             <Col flex="flex" span={24}>
               <TweetTable
-                data={hashTagResults}
-                totalPage={totalPage}
-                currentPage={currentPage}
+                data={tweet}
                 loading={loading}
                 onPageChange={handleOnPageChange}
               />
@@ -64,7 +61,7 @@ const HashTag = (props: UrlProps) => {
         </DefaultLayout>
       </React.Profiler>
     ),
-    [q, hashTagResults, totalPage, currentPage, loading]
+    [q, tweet, loading]
   )
 }
 
