@@ -35,7 +35,7 @@ const HashTag = (props: UrlProps) => {
         <DefaultLayout
           pageTitle="Hash Tag"
           title="Hash Tag"
-          desc="Tweet feed by hash tag"
+          desc="Tweeter feed by hash tag"
           selectedMenu={['hashtag']}
         >
           <Row className="HashTag__Search">
