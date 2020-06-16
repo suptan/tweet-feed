@@ -31,6 +31,7 @@ export default class CustomDocument extends Document<{
           />
           <link
             rel="stylesheet"
+            media="none"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap"
           />
         </Head>

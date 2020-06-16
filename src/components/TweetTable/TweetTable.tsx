@@ -11,13 +11,14 @@ type TweetTableProps = {
 
 const TweetTable = (props: TweetTableProps) => {
   const { loading } = props;
-  const { columns, dataSource, pagination } = useTweetTableElement(props);
+  const { columns, dataSource, pagination, scroll } = useTweetTableElement(props);
   return (
     <Table
       columns={columns}
       dataSource={dataSource}
       pagination={pagination}
       loading={loading}
+      scroll={scroll}
     />
   )
 }

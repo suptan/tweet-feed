@@ -35,10 +35,20 @@ const useHashTagElement = ({ q, offset }: UseHashTagElementParams): UseHashTagEl
   const [loading, setLoading] = useState<boolean>(false)
   const { hashTag, setHashTag } = hooks.useHashTags({ q, offset, setLoading });
   const count = get(hashTag, 'count', 0);
-  const hashTagResults = map(get(hashTag, 'results'), (r) => ({
-    ...r,
-    hashtags: r.hashtags.slice(0, 2),
-    date: dayjs(r.date).format('MMM D, YYYY'),
+  const hashTagResults = map(get(hashTag, 'results'), ({
+    likes,
+    replies,
+    retweets,
+    hashtags,
+    date,
+    ...rest
+  }) => ({
+    ...rest,
+    likes: likes || '-',
+    replies: replies || '-',
+    retweets: retweets || '-',
+    hashtags: hashtags.slice(0, 2),
+    date: dayjs(date).format('MMM D, YYYY'),
   }));
   // tslint:disable-next-line: no-bitwise
   const currentPage = ((Number(offset) / FETCH_LIMIT) | 0) + 1;

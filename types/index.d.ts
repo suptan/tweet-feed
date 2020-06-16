@@ -1,7 +1,6 @@
 import "@testing-library/jest-dom/extend-expect";
 import { Dispatch } from "react";
 import { TablePaginationConfig } from "antd/lib/table";
-import { PaginationConfig } from "antd/lib/pagination";
 
 export interface HttpGetRequestParams {
   path: string;
@@ -57,9 +56,15 @@ export interface UseHashTagElementParams {
   offset?: string | undefined;
 }
 
+export interface UseHashTagResult extends GetFeedByHashTagResults {
+  likes: string | number;
+  replies: string | number;
+  retweets: string | number;
+}
+
 export interface UseHashTagElement extends UseHashTag {
   q?: string | undefined;
-  hashTagResults: GetFeedByHashTagResults[] | undefined;
+  hashTagResults: UseHashTagResult[] | undefined;
   totalPage: number;
   currentPage: number;
   loading: boolean;
@@ -79,4 +84,7 @@ export interface UseTweetTableElement {
   columns: ColumnType<any>[];
   dataSource: any[];
   pagination: TablePaginationConfig;
+  scroll: RcTableProps<RecordType>['scroll'] & {
+    scrollToFirstRowOnChange?: boolean;
+  };
 }
