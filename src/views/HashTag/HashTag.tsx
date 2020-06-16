@@ -1,7 +1,6 @@
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import Search from 'antd/lib/input/Search';
-import { useRouter } from 'next/router';
 import logger from '@common/utils/logger';
 import TweetTable from '@components/TweetTable';
 import { useHashTagElement } from './HashHook';
@@ -20,18 +19,18 @@ interface HashTagInitialProps {
 
 const HashTag = (props: UrlProps) => {
   const { offset } = props;
-  const router = useRouter();
   const {
     hashTagResults,
     totalPage,
     currentPage,
+    handleOnSearch
   } = useHashTagElement({ offset });
   // logger.debug('barbar', hashTags)
-  const handleOnClick = (val: string): void => {
-    // e.preventDefault();
-    console.log(router.pathname, router.query, val); // tslint:disable-line
-    router.push(router.pathname + '?q=foo+bar')
-  }
+  // const handleOnSearch = (val: string): void => {
+  //   // e.preventDefault();
+  //   console.log(router.pathname, router.query, val); // tslint:disable-line
+  //   router.push(router.pathname + '?q=foo+bar')
+  // }
 
   return (
     <DefaultLayout title="Hash Tag" desc="Tweet feed by hash tag">
@@ -41,7 +40,7 @@ const HashTag = (props: UrlProps) => {
           <label>Hashtag search</label>
         </Col>
         <Col sm={12} md={8}>
-          <Search placeholder="Search by Hashtag" onSearch={handleOnClick} />
+          <Search placeholder="Search by Hashtag" onSearch={handleOnSearch} />
         </Col>
       </Row>
       <Row className="HashTag__Feed">

@@ -58,6 +58,7 @@ export interface UseHashTagElement extends UseHashTag {
   hashTagResults: GetFeedByHashTagResults[] | undefined;
   totalPage: number;
   currentPage: number;
+  handleOnSearch: (val: string) => void
 }
 
 // TODO, compare usage with TweetTableProps

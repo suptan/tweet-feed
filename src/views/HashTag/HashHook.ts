@@ -3,10 +3,17 @@ import { get, map } from 'lodash';
 import dayjs from 'dayjs';
 import hooks from '@hook';
 import { UseHashTagElementParams, UseHashTagElement } from 'types';
+import { NextRouter, useRouter } from 'next/router';
 
 const { publicRuntimeConfig: { FETCH_LIMIT } } = getConfig();
 
+const onSearch = (val: string, router: NextRouter): void => {
+  console.log(router.pathname, router.query, val, 'next'); // tslint:disable-line
+  router.push(router.pathname + '?q=foo+bar')
+}
+
 const useHashTagElement = ({ offset }: UseHashTagElementParams): UseHashTagElement => {
+  const router = useRouter();
   const { hashTag, setHashTag } = hooks.useHashTags({ offset });
   const count = get(hashTag, 'count', 0);
   const hashTagResults = map(get(hashTag, 'results'), (r) => ({
@@ -25,6 +32,7 @@ const useHashTagElement = ({ offset }: UseHashTagElementParams): UseHashTagEleme
     currentPage,
     hashTag,
     setHashTag,
+    handleOnSearch: (val: string) => onSearch(val, router),
   };
 };
 
