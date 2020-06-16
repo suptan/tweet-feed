@@ -31,7 +31,7 @@ const HashTag = (props: UrlProps) => {
   }
 
   return (
-    <DefaultLayout>
+    <DefaultLayout title="Hash Tag" desc="Tweet feed by hash tag">
       <h1>Hash Tag</h1>
       <Row>
         <Col sm={12} md={8}>
