@@ -11,6 +11,8 @@ const useUserElement = ({ q, offset }: UserProps): UseUserElement => {
   const { tweet, loading, setTweet, setLoading } = hooks.useTweetFeed({ q, offset, by: 'users' });
   const search: TweetTableSearchConfig = {
     q,
+    label: 'User search',
+    placeholder: 'Search by User',
     onSearch: (val: string) => {
       logger.info(`Search feed by tag ${val}`);
       tweetHelper.onSearch(val, router);

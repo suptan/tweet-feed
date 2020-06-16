@@ -3,6 +3,10 @@
 .TweetTable {
   &__Search {
     margin: $space-medium 0;
+
+    &Label {
+      margin: $space-small 0;
+    }
   }
 
   &__Feed {

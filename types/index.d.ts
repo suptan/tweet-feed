@@ -92,5 +92,7 @@ export interface UseUserElement extends UseTweetFeed {
 
 export interface TweetTableSearchConfig {
   q?: string | undefined;
+  label?: string | undefined;
+  placeholder?: string | undefined;
   onSearch: (val: string) => void;
 }

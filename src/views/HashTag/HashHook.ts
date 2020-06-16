@@ -10,6 +10,8 @@ const useHashTagElement = ({ q, offset }: UseHashTagElementParams): UseHashTagEl
   const { tweet, loading, setTweet, setLoading } = hooks.useTweetFeed({ q, offset, by: 'tag' });
   const search: TweetTableSearchConfig = {
     q,
+    label: 'Hashtag search',
+    placeholder: 'Search by Hashtag',
     onSearch: (val: string) => {
       logger.info(`Search feed by tag ${val}`);
       TweetHelper.onSearch(val, router);

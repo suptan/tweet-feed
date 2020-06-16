@@ -26,12 +26,12 @@ const TweetTable = (props: TweetTableProps) => {
       {search &&
       (
         <Row className="TweetTable__Search">
-          <Col span={24}>
-            <label>Hashtag search</label>
+          <Col span={24} className="TweetTable__SearchLabel">
+            <label>{search.label}</label>
           </Col>
           <Col sm={12} md={8}>
             <Search
-              placeholder="Search by Hashtag"
+              placeholder={search.placeholder}
               onSearch={search.onSearch}
               defaultValue={search.q}
             />

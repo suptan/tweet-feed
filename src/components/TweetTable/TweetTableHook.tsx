@@ -16,7 +16,7 @@ const useTweetTableElement = ({
       key: 'text',
       dataIndex: 'text',
       title: 'Tweet',
-      width: 220,
+      width: 230,
       fixed: 'left',
       render: (text: string) => {
         return (
@@ -29,36 +29,32 @@ const useTweetTableElement = ({
       dataIndex: 'likes',
       title: 'Likes',
       width: 67,
-      // colSpan: 2,
       align: 'center',
     },
     {
       key: 'replies',
       dataIndex: 'replies',
       title: 'Replies',
-      // colSpan: 2,
-      width: 80,
+      width: 82,
       align: 'center',
     },
     {
       key: 'retweets',
       dataIndex: 'retweets',
       title: 'Retweets',
-      // colSpan: 2,
-      width: 93,
+      width: 95,
       align: 'center',
     },
     {
       key: 'hashtags',
       dataIndex: 'hashtags',
       title: 'Hashtags',
-      // colSpan: 2,
+      width: 300,
     },
     {
       key: 'date',
       dataIndex: 'date',
       title: 'Date',
-      // colSpan: 2,
     },
   ];
   const count = get(data, 'count', 0);
