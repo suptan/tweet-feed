@@ -29,7 +29,12 @@ const HashTag = (props: UrlProps) => {
   } = useHashTagElement(props);
 
   return (
-    <DefaultLayout pageTitle="Hash Tag" title="Hash Tag" desc="Tweet feed by hash tag">
+    <DefaultLayout
+      pageTitle="Hash Tag"
+      title="Hash Tag"
+      desc="Tweet feed by hash tag"
+      selectedMenu={['hashtag']}
+    >
       <Row className="HashTag__Search">
         <Col span={24}>
           <label>Hashtag search</label>

@@ -1,9 +1,21 @@
+@import '../../../common/css/colors';
 @import '../../../common/css/variables';
 
 .DefaultLayout {
+  & > .ant-layout-header {
+    background-color: $color-header;
+  }
   & > .ant-layout-content {
     padding: $space-large;
     display: flex;
     flex-direction: column;
+  }
+  &__menu {
+    padding: 0 $space-large;
+    background-color: $color-header;
+
+    & > .ant-menu-horizontal > .ant-menu-item-selected {
+      background-color: $color-body;
+    }
   }
 }
