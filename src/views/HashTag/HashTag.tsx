@@ -1,14 +1,11 @@
 import React, { useMemo } from 'react';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
-import Search from 'antd/lib/input/Search';
 import logger from '@common/utils/logger';
 import TweetTable from '@components/TweetTable';
 import { useHashTagElement } from './HashHook';
 import { DefaultLayout } from '@components/Layout';
 import { UrlProps } from 'types';
-
-import './HashTag.scss';
 
 interface HashTagProps {
   q?: string;
@@ -24,7 +21,7 @@ const HashTag = (props: HashTagProps) => {
     q,
     tweet,
     loading,
-    handleOnSearch,
+    search,
     handleOnPageChange,
   } = useHashTagElement(props);
 
@@ -37,23 +34,12 @@ const HashTag = (props: HashTagProps) => {
           desc="Tweeter feed by hash tag"
           selectedMenu={['hash-tag']}
         >
-          <Row className="HashTag__Search">
-            <Col span={24}>
-              <label>Hashtag search</label>
-            </Col>
-            <Col sm={12} md={8}>
-              <Search
-                placeholder="Search by Hashtag"
-                onSearch={handleOnSearch}
-                defaultValue={q}
-              />
-            </Col>
-          </Row>
-          <Row className="HashTag__Feed">
-            <Col flex="flex" span={24}>
+          <Row>
+            <Col flex="auto">
               <TweetTable
                 data={tweet}
                 loading={loading}
+                search={search}
                 onPageChange={handleOnPageChange}
               />
             </Col>

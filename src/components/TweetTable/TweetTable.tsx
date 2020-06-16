@@ -1,24 +1,55 @@
+import React from 'react'
+import Search from 'antd/lib/input/Search';
 import Table from 'antd/lib/table';
+import Row from 'antd/lib/row';
+import Col from 'antd/lib/col';
 import { useTweetTableElement } from './TweetTableHook';
-import { APITweet } from 'types';
+import { APITweet, TweetTableSearchConfig } from 'types';
+import logger from '@common/utils/logger';
+
+import './TweetTable.scss';
 
 type TweetTableProps = {
   data: APITweet | undefined;
   loading: boolean;
-  onPageChange: (page: number, pageSize?: number | undefined) => void
+  search: TweetTableSearchConfig;
+  onPageChange: (page: number, pageSize?: number | undefined) => void;
 }
 
 const TweetTable = (props: TweetTableProps) => {
-  const { loading } = props;
+  const {
+    loading, search,
+  } = props;
   const { columns, dataSource, pagination, scroll } = useTweetTableElement(props);
   return (
-    <Table
-      columns={columns}
-      dataSource={dataSource}
-      pagination={pagination}
-      loading={loading}
-      scroll={scroll}
-    />
+    <React.Profiler id="TweetTable" onRender={logger.handleProfileRender}>
+      {search &&
+      (
+        <Row className="TweetTable__Search">
+          <Col span={24}>
+            <label>Hashtag search</label>
+          </Col>
+          <Col sm={12} md={8}>
+            <Search
+              placeholder="Search by Hashtag"
+              onSearch={search.onSearch}
+              defaultValue={search.q}
+            />
+          </Col>
+        </Row>
+      )}
+      <Row className="TweetTable__Feed">
+        <Col flex="flex" span={24}>
+          <Table
+            columns={columns}
+            dataSource={dataSource}
+            pagination={pagination}
+            loading={loading}
+            scroll={scroll}
+          />
+        </Col>
+      </Row>
+    </React.Profiler>
   )
 }
 

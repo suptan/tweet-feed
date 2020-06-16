@@ -1,4 +1,4 @@
-import { UseUserElement } from "types";
+import { UseUserElement, TweetTableSearchConfig } from "types";
 import { useRouter } from "next/router";
 import logger from "@common/utils/logger";
 import hooks from '@hook';
@@ -9,6 +9,13 @@ const useUserElement = ({ q, offset }: UserProps): UseUserElement => {
   logger.info(`Render User with q=${q} offset=${offset}`)
   const router = useRouter();
   const { tweet, loading, setTweet, setLoading } = hooks.useTweetFeed({ q, offset, by: 'users' });
+  const search: TweetTableSearchConfig = {
+    q,
+    onSearch: (val: string) => {
+      logger.info(`Search feed by tag ${val}`);
+      tweetHelper.onSearch(val, router);
+    },
+  };
 
   return {
     q,
@@ -16,10 +23,7 @@ const useUserElement = ({ q, offset }: UserProps): UseUserElement => {
     tweet,
     setTweet,
     setLoading,
-    handleOnSearch: (val: string): void => {
-      logger.info(`Search feed by user ${val}`);
-      tweetHelper.onSearch(val, router);
-    },
+    search,
     handleOnPageChange: (page: number) => {
       logger.info(`Search feed by user on page ${page}`);
       tweetHelper.onChangePage(page, router);

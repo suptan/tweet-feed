@@ -65,7 +65,7 @@ export interface UseHashTagElementParams {
 
 export interface UseHashTagElement extends UseTweetFeed {
   q?: string | undefined;
-  handleOnSearch: (val: string) => void;
+  search: TweetTableSearchConfig;
   handleOnPageChange: (page: number, pageSize?: number | undefined) => void;
 }
 
@@ -86,6 +86,11 @@ export interface UseTweetTableElement {
 
 export interface UseUserElement extends UseTweetFeed {
   q?: string | undefined;
-  handleOnSearch: (val: string) => void;
+  search: TweetTableSearchConfig;
   handleOnPageChange: (page: number, pageSize?: number | undefined) => void;
+}
+
+export interface TweetTableSearchConfig {
+  q?: string | undefined;
+  onSearch: (val: string) => void;
 }

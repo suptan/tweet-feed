@@ -3,7 +3,6 @@ import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
 import logger from "@common/utils/logger"
 import { DefaultLayout } from "@components/Layout"
-import Search from "antd/lib/input/Search";
 import { UrlProps } from "types";
 import { useUserElement } from "./UserHook";
 import TweetTable from "@components/TweetTable";
@@ -22,7 +21,7 @@ const User = (props: UserProps) => {
     q,
     tweet,
     loading,
-    handleOnSearch,
+    search,
     handleOnPageChange,
   } = useUserElement(props);
 
@@ -36,22 +35,11 @@ const User = (props: UserProps) => {
           selectedMenu={['user']}
         >
           <Row>
-            <Col span={24}>
-              <label>User search</label>
-            </Col>
-            <Col sm={12} md={8}>
-              <Search
-                placeholder="Search by User"
-                onSearch={handleOnSearch}
-                defaultValue={q}
-              />
-            </Col>
-          </Row>
-          <Row>
-            <Col>
+            <Col flex="auto">
               <TweetTable
                 data={tweet}
                 loading={loading}
+                search={search}
                 onPageChange={handleOnPageChange}
               />
             </Col>

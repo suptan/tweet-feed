@@ -1,5 +1,5 @@
 import hooks from '@hook';
-import { UseHashTagElementParams, UseHashTagElement } from 'types';
+import { UseHashTagElementParams, UseHashTagElement, TweetTableSearchConfig } from 'types';
 import { useRouter } from 'next/router';
 import logger from '@common/utils/logger';
 import TweetHelper from '@common/utils/tweet-helper';
@@ -8,18 +8,21 @@ const useHashTagElement = ({ q, offset }: UseHashTagElementParams): UseHashTagEl
   logger.info(`Render HashTag with q=${q} offset=${offset}`)
   const router = useRouter();
   const { tweet, loading, setTweet, setLoading } = hooks.useTweetFeed({ q, offset, by: 'tag' });
-
-  return {
+  const search: TweetTableSearchConfig = {
     q,
-    tweet,
-    loading,
-    setTweet,
-    setLoading,
-    handleOnSearch: (val: string): void => {
+    onSearch: (val: string) => {
       logger.info(`Search feed by tag ${val}`);
       TweetHelper.onSearch(val, router);
     },
-    handleOnPageChange: (page: number) => {
+  };
+
+  return {
+    tweet,
+    loading,
+    search,
+    setTweet,
+    setLoading,
+    handleOnPageChange: (page: number): void => {
       logger.info(`Search feed by tag on page ${page}`);
       TweetHelper.onChangePage(page, router);
     },
