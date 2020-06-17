@@ -16,6 +16,11 @@ const ssrCache = new LRUCache({
 app.prepare().then(() => {
   const server = express()
 
+  server.get('/static/*', (req: Request, res: Response) => {
+    req.url = req.originalUrl.replace('/static', '/static')
+    handle(req, res) // be sure to let the next middleware handle the modified request.
+  })
+
   server.get('/_next/*', (req: Request, res: Response) => {
     /* serving _next static content using next.js handler */
     handle(req, res)
