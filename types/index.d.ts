@@ -96,3 +96,9 @@ export interface TweetTableSearchConfig {
   placeholder?: string | undefined;
   onSearch: (val: string) => void;
 }
+
+export interface UseDefaultLayoutElement {
+  selectedKey: string[];
+  switchMenu: boolean;
+  handleOnClick: (e: ClickParam) => void;
+}

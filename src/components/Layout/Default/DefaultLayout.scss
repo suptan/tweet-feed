@@ -18,6 +18,12 @@
       background-color: $color-body;
     }
   }
+  &__skeleton {
+    padding: $space-large;
+    background-color: $color-card-bg;
+    border: 1px solid $color-border-default;
+    border-radius: 6px;
+  }
   &__footer {
     text-align: center;
   }
