@@ -1,6 +1,6 @@
 import api from '@api';
 import UserPage from '../../pages/user';
-import { render, screen, fireEvent, waitFor, act } from '../utils';
+import { render, screen, fireEvent, act } from '../utils';
 
 const mockRouterPush = jest.fn();
 
