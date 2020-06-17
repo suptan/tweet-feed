@@ -1,18 +1,13 @@
-import { useEffect } from 'react'
-import router from 'next/router'
-import Skeleton from 'antd/lib/skeleton'
+import { DefaultLayout } from '@components/Layout'
 
 /**
  * Homepage
  */
 const HomePage = () => {
-  useEffect(() => {
-    router.push('/hash-tag')
-  }, [])
   return (
-    <main>
-      <Skeleton />
-    </main>
+    <DefaultLayout pageTitle="Home" title="Home" desc="Home" selectedMenu={[]}>
+      <div />
+    </DefaultLayout>
   )
 }
 
