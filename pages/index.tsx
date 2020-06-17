@@ -1,3 +1,4 @@
+import Col from 'antd/lib/col'
 import { DefaultLayout } from '@components/Layout'
 
 /**
@@ -6,7 +7,9 @@ import { DefaultLayout } from '@components/Layout'
 const HomePage = () => {
   return (
     <DefaultLayout pageTitle="Home" title="Home" desc="Home" selectedMenu={[]}>
-      <div />
+      <Col span={24}>
+        <h2>Welcome! Please select any menu above to search for Feed.</h2>
+      </Col>
     </DefaultLayout>
   )
 }

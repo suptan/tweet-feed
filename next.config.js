@@ -81,6 +81,5 @@ module.exports = (phase, ...rest) => {
     PHASE_PRODUCTION_BUILD,
   ].includes(phase);
   const config = shouldAddBuildConfig ? getBuildConfig(phase, ...rest) : {};
-  console.log('nextjs', phase, config)
   return config;
 }
