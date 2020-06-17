@@ -12,7 +12,7 @@ jest.mock('next/config', () => () => ({
 }));
 
 describe('API Hashtag', () => {
-  beforeAll(() => {
+  beforeEach(() => {
     jest.clearAllMocks();
   })
 
@@ -74,7 +74,7 @@ describe('API Hashtag', () => {
     const mockData = new Error('request failed');
     http.getRequest.mockRejectedValueOnce(mockData);
     try {
-      await api.getFeedByHashTag({});
+      await api.getFeedByHashTag({ q: '' });
     } catch(err) {
       expect(err).toEqual(mockData);
       expect(http.getRequest).toBeCalledWith(
