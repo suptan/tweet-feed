@@ -1,6 +1,6 @@
 {
   "name": "tweet-feed",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Frontend build by NextJS with TypeScript and Redux",
   "main": "index.js",
   "scripts": {
