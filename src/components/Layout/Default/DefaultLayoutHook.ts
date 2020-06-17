@@ -15,7 +15,7 @@ const useDefaultLayoutElement = ({
 }: DefaultLayoutProps) => {
   const router = useRouter();
   const [selectedKey, setSelectedKey] = useState<string[]>(selectedMenu);
-  const [switchMenu, setSwitchMenu] = useState<boolean>(false);
+  const [switchMenu, setSwitchMenu] = useState<boolean>(true);
 
   return {
     selectedKey,

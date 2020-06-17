@@ -7,6 +7,8 @@ body > div:first-child,
 #__next > div,
 #__next > div > div {
   min-height: 100%;
+  display: flex;
+  flex: auto;
 }
 
 html, body {

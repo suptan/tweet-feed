@@ -33,13 +33,14 @@ const DefaultLayout = (props: DefaultLayoutProps) => {
         </Menu>
       </div>
       <Content>
-        {switchMenu
-        ? (<Skeleton
-            active
-            className="DefaultLayout__skeleton"
+        <div className="DefaultLayout__content">
+          {switchMenu
+          ? (<Skeleton
+              active
             />)
-        : (<>{children}</>)
-        }
+          : (<>{children}</>)
+          }
+        </div>
       </Content>
       <Footer className="DefaultLayout__footer">
         <span>Tweet ©2020 Created by suptan</span>
