@@ -10,11 +10,16 @@ const handle = app.getRequestHandler()
 
 const ssrCache = new LRUCache({
   max: 100 * 1024 * 1024 /* cache size will be 100 MB */,
-  maxAge: 1000 /* cache time out is 1 hr */,
+  maxAge: 1000 * 60 /* cache time out is 1 min */,
 })
 
 app.prepare().then(() => {
   const server = express()
+
+  server.get('/static/*', (req: Request, res: Response) => {
+    req.url = req.originalUrl.replace('/static', '/static')
+    handle(req, res) // be sure to let the next middleware handle the modified request.
+  })
 
   server.get('/_next/*', (req: Request, res: Response) => {
     /* serving _next static content using next.js handler */

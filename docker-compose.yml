@@ -10,6 +10,7 @@ services:
       - "./server:/usr/src/app/server"
       - "./types:/usr/src/app/types"
       - "./src:/usr/src/app/src"
+      - "./pages:/usr/src/app/pages"
       - "twf-web-node_modules:/usr/src/app/node_modules"
       - "./next.config.js:/usr/src/app/next.config.js"
     ports:

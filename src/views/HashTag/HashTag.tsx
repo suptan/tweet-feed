@@ -1,15 +1,13 @@
 import React, { useMemo } from 'react';
 import Row from 'antd/lib/row';
 import Col from 'antd/lib/col';
-import Search from 'antd/lib/input/Search';
 import logger from '@common/utils/logger';
-import TweetTable from '@components/TweetTable';
 import { useHashTagElement } from './HashHook';
 import { DefaultLayout } from '@components/Layout';
+import TweetTable from '@components/TweetTable';
+import { UrlProps } from 'types';
 
-import './HashTag.scss';
-
-interface UrlProps {
+interface HashTagProps {
   q?: string;
   offset?: string;
 }
@@ -18,14 +16,12 @@ interface HashTagInitialProps {
   query: UrlProps
 }
 
-const HashTag = (props: UrlProps) => {
+const HashTag = (props: HashTagProps) => {
   const {
     q,
-    hashTagResults,
-    totalPage,
-    currentPage,
+    tweet,
     loading,
-    handleOnSearch,
+    search,
     handleOnPageChange,
   } = useHashTagElement(props);
 
@@ -35,28 +31,15 @@ const HashTag = (props: UrlProps) => {
         <DefaultLayout
           pageTitle="Hash Tag"
           title="Hash Tag"
-          desc="Tweet feed by hash tag"
-          selectedMenu={['hashtag']}
+          desc="Tweeter feed by hash tag"
+          selectedMenu={['hash-tag']}
         >
-          <Row className="HashTag__Search">
-            <Col span={24}>
-              <label>Hashtag search</label>
-            </Col>
-            <Col sm={12} md={8}>
-              <Search
-                placeholder="Search by Hashtag"
-                onSearch={handleOnSearch}
-                defaultValue={q}
-              />
-            </Col>
-          </Row>
-          <Row className="HashTag__Feed">
-            <Col flex="flex" span={24}>
+          <Row>
+            <Col flex="auto">
               <TweetTable
-                data={hashTagResults}
-                totalPage={totalPage}
-                currentPage={currentPage}
+                data={tweet}
                 loading={loading}
+                search={search}
                 onPageChange={handleOnPageChange}
               />
             </Col>
@@ -64,7 +47,7 @@ const HashTag = (props: UrlProps) => {
         </DefaultLayout>
       </React.Profiler>
     ),
-    [q, hashTagResults, totalPage, currentPage, loading]
+    [q, tweet, loading]
   )
 }
 

@@ -1,10 +1,11 @@
 {
   "name": "tweet-feed",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "Frontend build by NextJS with TypeScript and Redux",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test jest --notify --config=jest.config.js",
+    "test:coverage": "NODE_ENV=test jest --coverage  --silent --config=jest.config.js",
     "test:watch": "NODE_ENV=test DEBUG_PRINT_LIMIT=20000 jest --watchAll --config=jest.config.js",
     "start": "NODE_ENV=production PORT=$PORT node ./.next/production-server/index.js",
     "build": "rm -rf .next && next build && tsc --project tsconfig.server.json",

@@ -2,7 +2,7 @@
 @import '../../../common/css/variables';
 
 .DefaultLayout {
-  height: 100%;
+  min-height: 100%;
 
   & > .ant-layout-header {
     background-color: $color-header;
@@ -17,6 +17,12 @@
     & > .ant-menu-horizontal > .ant-menu-item-selected {
       background-color: $color-body;
     }
+  }
+  &__content {
+    padding: $space-large;
+    background-color: $color-card-bg;
+    border: 1px solid $color-border-default;
+    border-radius: 6px;
   }
   &__footer {
     text-align: center;

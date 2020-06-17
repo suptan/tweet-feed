@@ -2,6 +2,7 @@ require('dotenv').config()
 const {
   PHASE_DEVELOPMENT_SERVER,
   PHASE_PRODUCTION_BUILD,
+  PHASE_PRODUCTION_SERVER,
 } = require('next/constants')
 const Dotenv = require('dotenv-webpack')
 
@@ -74,7 +75,11 @@ const getBuildConfig = (...args) => {
 }
 
 module.exports = (phase, ...rest) => {
-  const shouldAddBuildConfig =
-    phase === PHASE_DEVELOPMENT_SERVER || phase === PHASE_PRODUCTION_BUILD
-  return shouldAddBuildConfig ? getBuildConfig(phase, ...rest) : {}
+  const shouldAddBuildConfig = [
+    PHASE_DEVELOPMENT_SERVER,
+    PHASE_PRODUCTION_SERVER,
+    PHASE_PRODUCTION_BUILD,
+  ].includes(phase);
+  const config = shouldAddBuildConfig ? getBuildConfig(phase, ...rest) : {};
+  return config;
 }

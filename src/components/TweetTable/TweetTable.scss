@@ -1,0 +1,16 @@
+@import '../../common/css/variables';
+@import '../../common/css/colors';
+
+.TweetTable {
+  &__Search {
+    margin-bottom: $space-medium;
+
+    &Label {
+      margin: $space-small 0;
+    }
+  }
+
+  &__Feed {
+    margin: $space-medium 0;
+  }
+}

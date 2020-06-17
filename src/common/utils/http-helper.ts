@@ -13,6 +13,9 @@ const getRequest = async ({
   path, queryString = '',
 }: HttpGetRequestParams) => new Promise<any>(async (resolve, reject) => {
   const url = path + '?' + queryString;
+
+  logger.info(`GET ${url}`);
+
   instance.get(url)
     .then((response) => resolve(response.data))
     .catch(error =>{

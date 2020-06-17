@@ -1,27 +1,18 @@
-import { ReactNode } from 'react';
 import Layout from 'antd/lib/layout'
-import Menu, { ClickParam } from 'antd/lib/menu';
+import Menu from 'antd/lib/menu';
+import Skeleton from 'antd/lib/skeleton';
 import Head from 'next/head';
+import { DefaultLayoutProps, useDefaultLayoutElement } from './DefaultLayoutHook';
 
 import './DefaultLayout.scss';
-import { useRouter } from 'next/router';
 
-type DefaultLayoutProps = {
-  children: ReactNode
-  pageTitle: string;
-  title: string;
-  desc: string;
-  selectedMenu: string[];
-}
 
 const { Header, Footer, Content } = Layout;
 const { Item } = Menu;
 const DefaultLayout = (props: DefaultLayoutProps) => {
-  const { children, pageTitle, title, desc, selectedMenu } = props;
-  const router = useRouter();
-  const handleOnClick = (e: ClickParam) => {
-    router.push('/' + e.key);
-  }
+  const { children, pageTitle, title, desc } = props;
+  const { selectedKey, switchMenu, handleOnClick } = useDefaultLayoutElement(props);
+
   return (
     <Layout className="DefaultLayout">
       <Head>
@@ -34,14 +25,23 @@ const DefaultLayout = (props: DefaultLayoutProps) => {
       <div className="DefaultLayout__menu">
         <Menu
           onClick={handleOnClick}
-          selectedKeys={selectedMenu}
+          selectedKeys={selectedKey}
           mode="horizontal"
         >
-          <Item key="hashtag">Hashtag Search</Item>
+          <Item key="hash-tag">Hashtag Search</Item>
           <Item key="user">User Search</Item>
         </Menu>
       </div>
-      <Content>{children}</Content>
+      <Content>
+        <div className="DefaultLayout__content">
+          {switchMenu
+          ? (<Skeleton
+              active
+            />)
+          : (<>{children}</>)
+          }
+        </div>
+      </Content>
       <Footer className="DefaultLayout__footer">
         <span>Tweet ©2020 Created by suptan</span>
       </Footer>
