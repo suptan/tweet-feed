@@ -8,7 +8,7 @@
 - 💄 Write SCSS & future CSS with PostCSS + preset-env
 - 👀 Lint your code with TSLint & Stylelint
 - 🌈 Prettier for consistent code style
-- 🔨 Jest + Enzyme for tests
+- 🔨 Jest + Testing Library for tests
 - ⚙️ Editorconfig file for consistent indents
 
 ## Getting started
@@ -84,6 +84,12 @@ You can write your tests using Jest and Enzyme. You can run all test with the fo
 ```sh
 $ npm run test
 ```
+
+To see coverage report, use the following command
+```sh
+$ npm run test:coverage
+```
+
 
 ## Modules
 
