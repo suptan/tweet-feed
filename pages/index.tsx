@@ -1,10 +1,17 @@
+import { useEffect } from 'react'
+import router from 'next/router'
+import Skeleton from 'antd/lib/skeleton'
+
 /**
  * Homepage
  */
 const HomePage = () => {
+  useEffect(() => {
+    router.push('/hash-tag')
+  }, [])
   return (
     <main>
-      <h1 data-testid="home-title">Hello, world!</h1>
+      <Skeleton />
     </main>
   )
 }
